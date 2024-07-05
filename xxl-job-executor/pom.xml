@@ -7,14 +7,8 @@
         <artifactId>xxl-job</artifactId>
         <version>2.4.2-SNAPSHOT</version>
     </parent>
-    <artifactId>xxl-job-executor-samples</artifactId>
+    <artifactId>xxl-job-executor</artifactId>
     <packaging>pom</packaging>
-
-    <modules>
-        <module>xxl-job-executor-sample-frameless</module>
-        <module>xxl-job-executor-sample-springboot</module>
-    </modules>
-
     <properties>
         <maven.deploy.skip>true</maven.deploy.skip>
     </properties>

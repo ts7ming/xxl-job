@@ -1,4 +1,4 @@
-package com.xxl.job.executor.sample.frameless.jobhandler;
+package com.xxl.job.executor.jobhandler;
 
 import com.xxl.job.core.context.XxlJobHelper;
 import com.xxl.job.core.handler.annotation.XxlJob;
@@ -25,8 +25,8 @@ import java.util.concurrent.TimeUnit;
  *
  * @author xuxueli 2019-12-11 21:52:51
  */
-public class SampleXxlJob {
-    private static Logger logger = LoggerFactory.getLogger(SampleXxlJob.class);
+public class JobExecutor {
+    private static Logger logger = LoggerFactory.getLogger(JobExecutor.class);
 
 
     /**

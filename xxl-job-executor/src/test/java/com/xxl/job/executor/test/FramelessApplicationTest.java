@@ -1,4 +1,4 @@
-package com.xxl.job.executor.sample.frameless.test;
+package com.xxl.job.executor.test;
 
 import org.junit.jupiter.api.Test;
 

@@ -359,7 +359,7 @@ Source repository address | Release Download
 ```
 <!-- http://repo1.maven.org/maven2/com/xuxueli/xxl-job-core/ -->
 <dependency>
-    <groupId>com.xuxueli</groupId>
+    <groupId>com.xxl</groupId>
     <artifactId>xxl-job-core</artifactId>
     <version>1.8.2</version>
 </dependency>
@@ -1087,12 +1087,12 @@ Tips: V1.3.x release has been published , enter the maintenance phase, branch  a
     ```
     <!-- http://repo1.maven.org/maven2/com/xuxueli/xxl-job-core/ -->
     <dependency>
-        <groupId>com.xuxueli</groupId>
+        <groupId>com.xxl</groupId>
         <artifactId>xxl-job-core</artifactId>
         <version>${最新稳定版}</version>
     </dependency>
     ```
-- 2、To adapt to the rules of central warehouse, groupId has been changed from com.xxl to com.xuxueli.
+- 2、To adapt to the rules of central warehouse, groupId has been changed from com.xxl to com.xxl.
 - 3、to resolve the problem that sub-modules can not be compiled separately, system version is not maintained in the project root pom, each sub-module is configured separately for version configuration;
 - 4、optimize data byte length statistics rule of RPC communication it may reduce 50% of data traffic;
 - 5、IJobHandler cancel task return value, before the execution status is judged by the return value, now it instead of task was executed successfully by default only when exception was caught the task execution was judged failed.

@@ -775,7 +775,7 @@ XXL-JOB是一个分布式任务调度平台，其核心设计目标是开发迅�
 ```
 <!-- http://repo1.maven.org/maven2/com/xuxueli/xxl-job-core/ -->
 <dependency>
-    <groupId>com.xuxueli</groupId>
+    <groupId>com.xxl</groupId>
     <artifactId>xxl-job-core</artifactId>
     <version>${最新稳定版本}</version>
 </dependency>
@@ -1938,7 +1938,7 @@ Tips: 历史版本(V1.3.x)目前已经Release至稳定版本, 进入维护阶段
     ```
     <!-- http://repo1.maven.org/maven2/com/xuxueli/xxl-job-core/ -->
     <dependency>
-        <groupId>com.xuxueli</groupId>
+        <groupId>com.xxl</groupId>
         <artifactId>xxl-job-core</artifactId>
         <version>${最新稳定版}</version>
     </dependency>

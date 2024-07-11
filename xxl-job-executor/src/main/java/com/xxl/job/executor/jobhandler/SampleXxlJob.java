@@ -25,8 +25,8 @@ import java.util.concurrent.TimeUnit;
  *
  * @author xuxueli 2019-12-11 21:52:51
  */
-public class JobExecutor {
-    private static Logger logger = LoggerFactory.getLogger(JobExecutor.class);
+public class SampleXxlJob {
+    private static Logger logger = LoggerFactory.getLogger(SampleXxlJob.class);
 
 
     /**

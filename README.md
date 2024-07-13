@@ -2,10 +2,8 @@
 > 在xxl-job-admin里直接集成了`SampleXxlJob`,打包成 Windows 程序
 
 
-[原项目](https://github.com/xuxueli/xxl-job)
-
-
 ### 说明
+- [原项目: XXL-JOB](https://github.com/xuxueli/xxl-job)
 - 打包工具: Launch4j + Inno Setup 6
 
 

@@ -1,0 +1,4 @@
+site_name: XXL-JOB-Win
+theme:
+  name: readthedocs
+  highlightjs: true

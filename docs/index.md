@@ -6,6 +6,8 @@
 - [原项目: XXL-JOB](https://github.com/xuxueli/xxl-job)
 - 打包工具: Launch4j + Inno Setup 6
 
+### 主界面
+![](ug.png)
 
 ### 使用
 ##### 1. 下载安装 

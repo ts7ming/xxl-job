@@ -38,6 +38,10 @@ WizardStyle=modern
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
 
+[Icons]  
+Name: "{group}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"  
+Name: "{group}\卸载{#MyAppName}"; Filename: "{uninstallexe}"
+
 [Files]  
 Source: "D:\OneDrive\Project\xxl-job-win\windows\MyJob.exe"; DestDir: "{app}"; Flags: ignoreversion  
 Source: "D:\OneDrive\Project\xxl-job-win\windows\config.json"; DestDir: "{app}"; Flags: ignoreversion  

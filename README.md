@@ -1,4 +1,6 @@
 ## xxl-job for windows
+> 在xxl-job-admin里直接集成了`SampleXxlJob`,打包成 Windows 程序
+
 
 [原项目](https://github.com/xuxueli/xxl-job)
 
@@ -9,7 +11,7 @@
 
 ### 使用
 ##### 1. 下载安装 
-[MyJob-Installer.exe]()
+[MyJob-Installer.exe](https://github.com/ts7ming/xxl-job-win/releases)
 
 ##### 2. 配置数据库
 - 安装完成后打开配置文件目录

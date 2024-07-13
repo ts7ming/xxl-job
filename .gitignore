@@ -1,7 +1,9 @@
 .idea
+.github
 .classpath
 .project
 *.iml
 target/
 .DS_Store
 .gitattributes
+windows/jre/*

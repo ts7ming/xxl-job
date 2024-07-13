@@ -1,6 +1,6 @@
-package com.xxl.job.executor;
+package com.xxl.job.admin.taskExecutor;
 
-import com.xxl.job.executor.config.FrameLessXxlJobConfig;
+import com.xxl.job.admin.taskExecutor.config.FrameLessXxlJobConfig;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

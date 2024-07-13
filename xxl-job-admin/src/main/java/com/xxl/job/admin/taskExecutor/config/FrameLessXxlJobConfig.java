@@ -1,4 +1,4 @@
-package com.xxl.job.executor.config;
+package com.xxl.job.admin.taskExecutor.config;
 
 import com.xxl.job.executor.jobhandler.SampleXxlJob;
 import com.xxl.job.core.executor.impl.XxlJobSimpleExecutor;

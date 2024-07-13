@@ -1,0 +1,18 @@
+
+
+Version:	3.50
+CmdLine:	D:\OneDrive\Project\xxl-job-win\windows\MyJob.exe --l4j-debug
+JNI:		No
+WOW64:		Yes
+Working dir:	D:\OneDrive\Project\xxl-job-win\windows\.
+Requires JDK:	No
+Requires 64-Bit: No
+Java min ver:	
+Java max ver:	
+JRE paths:	.\jre
+Check launcher:	D:\OneDrive\Project\xxl-job-win\windows\.\jre\bin\javaw.exe (OK)
+Version string: 1.017.000_011 / 64-Bit (OK)
+Launcher:	D:\OneDrive\Project\xxl-job-win\windows\.\jre\bin\javaw.exe
+Launcher args:	-jar "D:\OneDrive\Project\xxl-job-win\windows\MyJob.exe"
+Args length:	56/32768 chars
+Exit code:	0

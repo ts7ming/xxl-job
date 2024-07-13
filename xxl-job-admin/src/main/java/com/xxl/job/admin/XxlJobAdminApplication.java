@@ -54,7 +54,7 @@ public class XxlJobAdminApplication {
         JFrame frame = new JFrame("MyJob");
         // 设置窗口属性
         frame.setTitle("MyJob");
-        frame.setSize(500, 200);
+        frame.setSize(500, 300);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 
@@ -143,6 +143,7 @@ public class XxlJobAdminApplication {
         JButton stopButton = new JButton("停止");
         JButton startWeb = new JButton("打开Web");
         JButton initButton = new JButton("初始化数据库");
+        JButton issueButton = new JButton("关于");
         startButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -170,13 +171,21 @@ public class XxlJobAdminApplication {
                 }
             }
         });
-        startWeb.addActionListener(e -> openWeb());
+        startWeb.addActionListener(e -> openWeb(ReadConfig().getString("executorAddresses")));
         panel2.add(startButton);
         panel2.add(stopButton);
         panel2.add(startWeb);
-        panel2.add(initButton);
+
+
+        JPanel panel3 = new JPanel();
+        issueButton.addActionListener(e -> openWeb("https://github.com/ts7ming/xxl-job-win"));
+
+        panel3.add(initButton);
+        panel3.add(issueButton);
+
         frame.add(panel, BorderLayout.NORTH);
-        frame.add(panel2, BorderLayout.SOUTH);
+        frame.add(panel2, BorderLayout.CENTER);
+        frame.add(panel3, BorderLayout.SOUTH);
 
         frame.setVisible(true);
     }
@@ -245,14 +254,13 @@ public class XxlJobAdminApplication {
     }
 
 
-    private static void openWeb() {
+    private static void openWeb(String url) {
         if (Desktop.isDesktopSupported()) {
             Desktop desktop = Desktop.getDesktop();
             if (desktop.isSupported(Desktop.Action.BROWSE)) {
                 try {
-                    JSONObject runConfig = ReadConfig();
-                    URL url = new URL(runConfig.getString("executorAddresses"));
-                    desktop.browse(url.toURI());
+                    URL urlFixd = new URL(url);
+                    desktop.browse(urlFixd.toURI());
                 } catch (IOException | URISyntaxException e) {
                     e.printStackTrace();
                 }

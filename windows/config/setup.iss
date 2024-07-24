@@ -5,7 +5,7 @@
 #define MyAppVersion "1.0"
 #define MyAppPublisher "xxl-job-win"
 #define MyAppURL "https://github.com/ts7ming/xxl-job-win"
-#define MyAppExeName "MyJob-Installer.exe"
+#define MyAppExeName "MyJob.exe"
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application. Do not use the same AppId value in installers for other applications.
@@ -39,8 +39,8 @@ WizardStyle=modern
 Name: "english"; MessagesFile: "compiler:Default.isl"
 
 [Icons]  
-Name: "{group}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"  
-Name: "{group}\卸载{#MyAppName}"; Filename: "{uninstallexe}"
+Name: "{commonprograms}\MyJob\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"  
+Name: "{commonprograms}\MyJob\卸载{#MyAppName}"; Filename: "{uninstallexe}"
 
 [Files]  
 Source: "D:\OneDrive\Project\xxl-job-win\windows\MyJob.exe"; DestDir: "{app}"; Flags: ignoreversion  

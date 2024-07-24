@@ -1,5 +1,8 @@
 package com.xxl.job.admin;
 
+import ch.vorburger.exec.ManagedProcessException;
+import ch.vorburger.mariadb4j.DB;
+import ch.vorburger.mariadb4j.DBConfigurationBuilder;
 import com.xxl.job.admin.taskExecutor.ExecutorApplication;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -22,6 +25,7 @@ import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
+import java.util.Objects;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -31,6 +35,7 @@ import java.util.concurrent.Executors;
 @SpringBootApplication
 public class XxlJobAdminApplication {
     private static TrayIcon trayIcon;
+    private static Integer dbStatus;
 
     private static JSONObject ReadConfig() {
         String currentDirectory = System.getProperty("user.dir");
@@ -51,10 +56,11 @@ public class XxlJobAdminApplication {
     }
 
     public static void myJobClient() {
+        dbStatus = 0;
         JFrame frame = new JFrame("MyJob");
         // 设置窗口属性
         frame.setTitle("MyJob");
-        frame.setSize(500, 300);
+        frame.setSize(600, 400);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 
@@ -125,13 +131,13 @@ public class XxlJobAdminApplication {
         JPanel panel = new JPanel();
         String noteText = """
                 <html>
-                点击[启动]按钮将启动xxl-job管理后台并启动一个执行器<br>
-                点击[停止]按钮将关闭管理后台和执行器并退出<br>
-                点击[初始化数据库]按钮将在"config.json"定义的目标MySQL创建xxl-job数据库<br>
-                点击[打开Web]按钮将打开xxl-job管理后台<br>
-                点击[x]将隐藏到系统托盘区 (双击恢复)<br><br>
+                  首次启动点击[初始化数据库]按钮, 将生成内置数据库并启动,可在安装目录"config.json"查看修改<br><br>
+                  点击[启动]按钮将启动内置数据库和xxl-job管理后台并启动一个执行器<br>
+                  点击[停止]按钮将关闭管理后台和执行器并退出<br>
+                  点击[打开Web]按钮将打开xxl-job管理后台<br>
+                  点击[x]将隐藏到系统托盘区 (双击恢复)<br><br>
                 		
-                (启动后大约30秒内执行器注册到调度中心)<br><br>
+                  (启动后大约30秒内执行器注册到调度中心)<br><br>
                 </html>
                 """;
         JLabel note = new JLabel(noteText);
@@ -166,7 +172,11 @@ public class XxlJobAdminApplication {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (showConfirmDialog(frame, "确定执行?")) {
-                    initDB();
+                    try {
+                        initDB();
+                    } catch (ManagedProcessException ex) {
+                        throw new RuntimeException(ex);
+                    }
                     showConfirmDialog(frame, "已完成");
                 }
             }
@@ -194,26 +204,34 @@ public class XxlJobAdminApplication {
         JSONObject runConfig = ReadConfig();
         ExecutorService executor = Executors.newFixedThreadPool(10);
         executor.submit(() -> {
+                try {
+                    startDB();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+        });
+        executor.submit(() -> {
             try {
                 ExecutorApplication.main(runConfig);
             } catch (Exception e) {
                 e.printStackTrace();
             }
         });
-        System.setProperty("server.port", runConfig.getString("port"));
-        System.setProperty("spring.datasource.url", runConfig.getString("url"));
-        System.setProperty("spring.datasource.username", runConfig.getString("username"));
-        System.setProperty("spring.datasource.password", runConfig.getString("password"));
+        System.setProperty("server.port", runConfig.getString("serverPort"));
+        System.setProperty("spring.datasource.url", runConfig.getString("mysqlUrl"));
+        System.setProperty("spring.datasource.username", runConfig.getString("mysqlUserName"));
+        System.setProperty("spring.datasource.password", runConfig.getString("mysqlPassword"));
         String[] args = new String[]{};
         SpringApplication.run(XxlJobAdminApplication.class, args);
     }
 
 
-    private static void initDB() {
+    private static void initDB() throws ManagedProcessException {
+        startDB();
         JSONObject runConfig = ReadConfig();
-        String url = runConfig.getString("url");
-        String user = runConfig.getString("username");
-        String password = runConfig.getString("password");
+        String url = runConfig.getString("mysqlUrl");
+        String user = runConfig.getString("mysqlUserName");
+        String password = runConfig.getString("mysqlPassword");
 
         String initUrl = url.replace("xxl_job?", "mysql?");
 
@@ -252,8 +270,6 @@ public class XxlJobAdminApplication {
             e.printStackTrace();
         }
     }
-
-
     private static void openWeb(String url) {
         if (Desktop.isDesktopSupported()) {
             Desktop desktop = Desktop.getDesktop();
@@ -277,9 +293,17 @@ public class XxlJobAdminApplication {
         return result == JOptionPane.YES_OPTION;
     }
 
+    private static void startDB() throws ManagedProcessException {
+        if (Objects.equals(ReadConfig().getString("MariaDB4j"), "true") && dbStatus==0){
+            dbStatus = 1;
+            DBConfigurationBuilder configBuilder = DBConfigurationBuilder.newBuilder();
+            configBuilder.setPort(Integer.parseInt(ReadConfig().getString("mysqlPort")));
+            configBuilder.setDataDir(ReadConfig().getString("mysqlDataPath"));
+            DB db = DB.newEmbeddedDB(configBuilder.build());
+            db.start();
+        }
+    }
     public static void main(String[] args) {
         myJobClient();
     }
-
-
 }

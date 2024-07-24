@@ -1,9 +1,11 @@
-{
-  "port": "9001",
-  "url": "jdbc:mysql://localhost:3306/xxl_job?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&serverTimezone=Asia/Shanghai",
-  "username": "root",
-  "password": "root",
+{  "serverPort": "9001",
+  "executorLogPath":"./log/",
   "executorAddresses":"http://127.0.0.1:9001/xxl-job-admin",
   "executorPort":"9998",
-  "executorLogPath":"D://temp//xxl_job//log//"
+  "MariaDB4j": "true",
+  "mysqlUrl": "jdbc:mysql://localhost:6033/xxl_job?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&serverTimezone=Asia/Shanghai",
+  "mysqlPort":"6033",
+  "mysqlUserName":"root",
+  "mysqlPassword":"",
+  "mysqlDataPath": "./mysqlData"
 }
